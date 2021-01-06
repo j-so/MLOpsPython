@@ -19,13 +19,13 @@ stages:
   - job: 'Test'
     displayName: 'Test'
     steps:
-    - task: AzureCLI@1
+    - task: AzureCLI@2
       inputs:
+        scriptType: pscore 
         azureSubscription: '$(AZURE_RM_SVC_CONNECTION)'
         scriptLocation: inlineScript
         workingDirectory: $(Build.SourcesDirectory)
         inlineScript: |
           az extension add -n azure-cli-ml
-          pip freeze
           az ml workspace create -g jenns-centraluseuap -w jenns-generate-13 --exist-ok --yes
       displayName: 'Test extension add and workspace'
