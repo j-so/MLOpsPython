@@ -26,5 +26,6 @@ stages:
         workingDirectory: $(Build.SourcesDirectory)
         inlineScript: |
           az extension add -n azure-cli-ml
+          pip freeze
           az ml workspace create -g jenns-centraluseuap -w jenns-generate-13 --exist-ok --yes
       displayName: 'Test extension add and workspace'
